@@ -6,8 +6,9 @@ namespace FilmsSaver.Server.Controllers
     [Route("[controller]")]
     public class LoginController(ILogger<WeatherForecastController> _logger) : ControllerBase
     {
-        public async Task<IActionResult> Login ()
+        public async Task<IActionResult> Login([FromQuery] string qwe )
         {
+
             return Ok("Login was success.");
         }
 
