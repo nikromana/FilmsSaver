@@ -1,3 +1,9 @@
+
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,10 +13,37 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
+builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration.GetSection("Jwt:ValidIssuer").Value, 
+        ValidAudience = builder.Configuration.GetSection("Jwt:ValidAudience").Value,        
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Secret").Value)) // Replace with your secret key
+    };
+});
+
+builder.Services.AddDbContext<FilmsSaverDbContext.FilmsSaverDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
+app.UseCors("MyPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,6 +54,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
