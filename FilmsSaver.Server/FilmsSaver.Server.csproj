@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>a022cada-9abb-4d13-b41b-0ee12f2d38b5</UserSecretsId>
     <SpaRoot>..\filmssaver.client</SpaRoot>
@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\DbContext\FilmsSaverDbContext.csproj" />
     <ProjectReference Include="..\filmssaver.client\filmssaver.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

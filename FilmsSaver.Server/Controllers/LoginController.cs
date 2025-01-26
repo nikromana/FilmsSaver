@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Queries.Login;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FilmsSaver.Server.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
     public class LoginController(ILogger<WeatherForecastController> _logger) : ControllerBase
     {
-        [HttpGet]
-        [Route("login")]
-        public async Task<IActionResult> Login([FromQuery] string qwe )
+        [HttpGet("login")]
+        [EnableCors("MyPolicy")]
+        public async Task<IActionResult> Login([FromQuery] LoginQuery loginQuery)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             return Ok("Login was success.");
         }
 

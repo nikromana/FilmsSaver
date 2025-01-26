@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Login } from "../Models/Login"
 
 
-@Injectable{
+@Injectable({
   providedIn: 'root'
-}
+})
 
 export class AuthenticationService {
 
