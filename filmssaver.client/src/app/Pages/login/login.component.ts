@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../Services/AuthenticationService';
 export class LoginComponent {
 
   authService = inject(AuthenticationService);
-
+  formActionUrl: string = 'http://localhost:5062/Auth/login';
 
   goRegistration() {
     console.log("Go to registration");

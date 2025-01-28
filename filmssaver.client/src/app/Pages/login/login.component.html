@@ -1,9 +1,9 @@
 <div>
-  <form method="post"  action="Login/login">
+  <form method="get" [attr.action]="formActionUrl" >
     <label> Login</label>
-    <input type="text" id="login" />
+    <input type="text" id="login" name="login" />
     <label>Password</label>
-    <input type="text" id="password" />
+    <input type="text" id="password" name="password"/>
     <button type="submit"> Login</button>
     <button type="button" onclick="goRegistration()"> Registrations</button>
   </form>

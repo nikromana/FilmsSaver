@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FilmsSaver.Server.Controllers
 {
     [Route("[controller]")]
-    public class LoginController(ILogger<WeatherForecastController> _logger) : ControllerBase
+    public class AuthController(ILogger<WeatherForecastController> _logger) : ControllerBase
     {
         [HttpGet("login")]
         [EnableCors("MyPolicy")]
