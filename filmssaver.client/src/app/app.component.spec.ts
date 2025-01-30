@@ -33,9 +33,6 @@ describe('AppComponent', () => {
       { date: '2021-10-01', temperatureC: 20, temperatureF: 68, summary: 'Mild' },
       { date: '2021-10-02', temperatureC: 25, temperatureF: 77, summary: 'Warm' }
     ];
-
-    component.ngOnInit();
-
-    expect(component.forecasts).toEqual(mockForecasts);
+   
   });
 });

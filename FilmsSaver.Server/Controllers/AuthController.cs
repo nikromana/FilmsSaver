@@ -1,15 +1,17 @@
-﻿using Application.Queries.Login;
+﻿using Application.Commands.Registration;
+using Application.Queries.Login;
+using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmsSaver.Server.Controllers
 {
     [Route("[controller]")]
-    public class AuthController(ILogger<AuthController> _logger) : ControllerBase
+    public class AuthController(ILogger<AuthController> _logger, IMediator _mediatr) : ControllerBase
     {
         [HttpGet("login")]
         [EnableCors("MyPolicy")]
-        public async Task<IActionResult> Login([FromQuery] LoginQuery loginQuery)
+        public async Task<IActionResult> Login([FromQuery] LoginQuery loginQuery , CancellationToken token)
         {
             if (!ModelState.IsValid)
             {
@@ -20,9 +22,10 @@ namespace FilmsSaver.Server.Controllers
 
         [HttpGet]
         [Route("registration")]
-        public async Task<IActionResult> Registration ()
+        public async Task<IActionResult> Registration([FromQuery] RegistrationCommand registrationCommand, CancellationToken token)
         {
-            return Ok("Registartion was success.");
+            var result = await _mediatr.Send(registrationCommand, token);
+            return Ok();
         }
     }
 }

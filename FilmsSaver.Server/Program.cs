@@ -1,8 +1,14 @@
 
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Model;
+using MediatR;
+using Application.Commands.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +41,15 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
     };
 });
 
-builder.Services.AddDbContext<FilmsSaverDbContext.FilmsSaverDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<FilmsSaverDbContext.FilmsSaverDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddDbContext<FilmsSaverDbContext.FilmsSaverDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 
 var app = builder.Build();
