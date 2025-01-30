@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using MediatR;
+using Application.Commands.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,8 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
             Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Secret").Value)) // Replace with your secret key
     };
 });
+
+builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<FilmsSaverDbContext.FilmsSaverDbContext>()
