@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegistrationComponent } from './Pages/registration/registration.component';
 import { MainPageComponent } from './Pages/main-page/main-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { MainPageComponent } from './Pages/main-page/main-page.component';
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule
+    AppRoutingModule, FormsModule, NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
