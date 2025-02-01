@@ -61,6 +61,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "debug": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"

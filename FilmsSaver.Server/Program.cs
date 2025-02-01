@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using MediatR;
 using Application.Commands.Registration;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,7 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
     };
 });
 
+builder.Services.AddScoped<JwtTockenService>();
 builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
 
 builder.Services.AddIdentity<User, IdentityRole>()
