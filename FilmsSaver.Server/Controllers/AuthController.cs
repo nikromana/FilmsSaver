@@ -15,9 +15,9 @@ namespace FilmsSaver.Server.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(new { Errors = "Error login"});
             }
-            return Ok("Login was success.");
+            return Ok(new {Responce = "Login was success." });
         }
 
         [HttpGet]
