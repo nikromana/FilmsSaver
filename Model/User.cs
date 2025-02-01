@@ -4,6 +4,6 @@ namespace Model
 {
     public class User : IdentityUser
     {
-        public Film SavedFilms { get; set; }
+        public Film? SavedFilms { get; set; }
     }
 }

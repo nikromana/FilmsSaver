@@ -39,6 +39,7 @@
     <ProjectReference Include="..\filmssaver.client\filmssaver.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>
