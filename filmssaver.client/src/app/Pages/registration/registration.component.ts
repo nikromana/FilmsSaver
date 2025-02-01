@@ -10,4 +10,13 @@ import { AuthenticationService } from '../../Services/AuthenticationService';
 })
 export class RegistrationComponent {
 
+  authService = inject(AuthenticationService);
+
+  formActionUrl: string = 'http://localhost:5062/Auth/registration';
+
+  registration(registrationData: any) {
+    console.log(registrationData.value);
+    this.authService.registration(registrationData.value);
+  }
+
 }

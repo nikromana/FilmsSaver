@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AuthenticationService } from '../../Services/AuthenticationService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,15 @@ export class LoginComponent {
   authService = inject(AuthenticationService);
   formActionUrl: string = 'http://localhost:5062/Auth/login';
 
+  constructor(private router: Router) { }
+
+  login(loginFormData: any) {
+    console.log(loginFormData.value);
+    this.authService.login(loginFormData.value);
+  }
+
   goRegistration() {
     console.log("Go to registration");
+    this.router.navigate(['/registration']);
   }
 }

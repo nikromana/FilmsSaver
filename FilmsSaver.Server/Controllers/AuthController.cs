@@ -25,7 +25,13 @@ namespace FilmsSaver.Server.Controllers
         public async Task<IActionResult> Registration([FromQuery] RegistrationCommand registrationCommand, CancellationToken token)
         {
             var result = await _mediatr.Send(registrationCommand, token);
-            return Ok();
+
+            if(!string.IsNullOrWhiteSpace(result.Error))
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Error);
         }
     }
 }
