@@ -1,13 +1,13 @@
 <div>
-  <form method="get" [attr.action]="formActionUrl">
+  <form  #registrationForm="ngForm" (ngSubmit)="registration(registrationForm)">
     <label>Email login</label>
-    <input type="text" id="emaillogin" name="email"/>
+    <input type="text" id="emaillogin" name="email" ngModel/>
     <label>Password</label>
-    <input type="text" id="password" name="password"/>
+    <input type="text" id="password" name="password" ngModel/>
     <label>Name</label>
-    <input type="text" id="name" name="name"/>
+    <input type="text" id="name" name="name" ngModel/>
     <label>Phone</label>
-    <input type="text" id="phone" name="phone"/>
+    <input type="text" id="phone" name="phone" ngModel/>
     <button type="submit">submit</button>
   </form>
 </div>

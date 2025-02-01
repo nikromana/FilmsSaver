@@ -17,7 +17,7 @@ export class AuthenticationService {
     const loginData = { Login: login.login, Password: login.password }
 
     this.http.get<string>('http://localhost:5062/Auth/login', { params: loginData, responseType: 'text' as 'json' })
-      .subscribe((response: any) => {
+      .subscribe((response: string) => {
 
         this.setTokenAndGoChats(response);
 
@@ -25,12 +25,11 @@ export class AuthenticationService {
       });
   }
 
-  registration(registration: Login) {
-    const registrationData = { EmailLogin: registration.Login, password: registration.Password }
-
-    this.http.get<any>('http://localhost:5062/Auth/registration', { params: registrationData })
-      .subscribe((response: any) => {
-
+  registration(registration: any) {
+    console.log(registration);
+    this.http.get<string>('http://localhost:5062/Auth/registration', { params: registration, responseType: 'text' as 'json' })
+      .subscribe((response: string) => {
+        
         this.setTokenAndGoChats(response);
 
         return response;

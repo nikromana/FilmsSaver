@@ -9,7 +9,14 @@ import { AuthenticationService } from '../../Services/AuthenticationService';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-  
+
+  authService = inject(AuthenticationService);
+
   formActionUrl: string = 'http://localhost:5062/Auth/registration';
+
+  registration(registrationData: any) {
+    console.log(registrationData.value);
+    this.authService.registration(registrationData.value);
+  }
 
 }
