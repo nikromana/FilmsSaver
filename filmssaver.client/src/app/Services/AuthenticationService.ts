@@ -13,10 +13,22 @@ export class AuthenticationService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(login: Login) {
-    const loginData = { EmailLogin: login.Login, password: login.Password }
+  login(login: any) {
+    const loginData = { Login: login.login, Password: login.password }
 
-    this.http.get<any>('https://localhost:7044/Authentication/login', { params: loginData })
+    this.http.get<string>('http://localhost:5062/Auth/login', { params: loginData, responseType: 'text' as 'json' })
+      .subscribe((response: any) => {
+
+        this.setTokenAndGoChats(response);
+
+        return response;
+      });
+  }
+
+  registration(registration: Login) {
+    const registrationData = { EmailLogin: registration.Login, password: registration.Password }
+
+    this.http.get<any>('http://localhost:5062/Auth/registration', { params: registrationData })
       .subscribe((response: any) => {
 
         this.setTokenAndGoChats(response);

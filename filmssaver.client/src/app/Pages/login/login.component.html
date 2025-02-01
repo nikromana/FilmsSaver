@@ -1,10 +1,10 @@
 <div>
-  <form method="get" [attr.action]="formActionUrl" >
+  <form #registerForm="ngForm" (ngSubmit)="login(registerForm)" >
     <label> Login</label>
-    <input type="text" id="login" name="login" />
+    <input type="text" id="login" name="login" ngModel />
     <label>Password</label>
-    <input type="text" id="password" name="password"/>
+    <input type="text" id="password" name="password" ngModel />
     <button type="submit"> Login</button>
-    <button type="button" onclick="goRegistration()"> Registrations</button>
+    <button type="button" (click)="goRegistration()"> Registrations</button>
   </form>
 </div>

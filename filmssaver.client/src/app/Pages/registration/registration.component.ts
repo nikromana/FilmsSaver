@@ -9,5 +9,7 @@ import { AuthenticationService } from '../../Services/AuthenticationService';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
+  
+  formActionUrl: string = 'http://localhost:5062/Auth/registration';
 
 }
