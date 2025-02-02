@@ -9,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class FilmsSearchComponent {
 
+
+  searchFilms() {
+
+    var film_search_example = document.getElementById("search_film_text") as HTMLInputElement;
+
+    if (film_search_example) {
+      var inputValue = film_search_example.value;
+      console.log(film_search_example);
+    } else {
+      console.log(film_search_example);
+    }
+
+
+  }
 }
