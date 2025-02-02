@@ -9,13 +9,17 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegistrationComponent } from './Pages/registration/registration.component';
 import { MainPageComponent } from './Pages/main-page/main-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilmsSearchComponent } from './Pages/films-search/films-search.component';
+import { FilmsSavedComponent } from './Pages/films-saved/films-saved.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    MainPageComponent
+    MainPageComponent,
+    FilmsSearchComponent,
+    FilmsSavedComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
