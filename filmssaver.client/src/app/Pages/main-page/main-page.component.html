@@ -1,1 +1,25 @@
 <p>main-page works!</p>
+<div>
+
+  <div>
+    <nav class="nav-container">
+      <div class="site-description">
+        <div class="w-50 d-flex justify-content-between border w-auto p-4 m-4">
+          <div id="photo" class="w-25 border">
+            photo
+          </div>
+          <div class="w-75 border">
+            Description
+          </div>
+        </div>
+      </div>
+      <ul class="nav-menu justify-content-star">
+        <li class="tab"><a [routerLink]="[{ outlets: { main_page_outlet: ['films-saved'] } }]" routerLinkActive="active">Films</a></li>
+        <li class="tab"><a [routerLink]="[{ outlets: { main_page_outlet: ['films-search'] } }]" routerLinkActive="active">Saved</a></li>
+      </ul>
+    </nav>
+    <div class="content-container">
+      <router-outlet name="main_page_outlet"></router-outlet>
+    </div>
+  </div>
+</div>

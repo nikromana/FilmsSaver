@@ -1,0 +1,11 @@
+.align_center {
+  text-align: center;
+}
+
+.input_inline {
+  display: inline-block;
+}
+
+.webkit_canter {
+  text-align: -webkit-center;
+}
