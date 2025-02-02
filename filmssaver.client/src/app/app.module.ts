@@ -11,6 +11,8 @@ import { MainPageComponent } from './Pages/main-page/main-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilmsSearchComponent } from './Pages/films-search/films-search.component';
 import { FilmsSavedComponent } from './Pages/films-saved/films-saved.component';
+import { FilmCardComponent } from './Pages/film-card/film-card.component';
+import { FilmPageComponent } from './Pages/film-page/film-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FilmsSavedComponent } from './Pages/films-saved/films-saved.component';
     RegistrationComponent,
     MainPageComponent,
     FilmsSearchComponent,
-    FilmsSavedComponent
+    FilmsSavedComponent,
+    FilmCardComponent,
+    FilmPageComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

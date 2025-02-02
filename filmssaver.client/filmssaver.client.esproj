@@ -9,6 +9,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\Models\" />
-    <Folder Include="src\app\Pages\" />
   </ItemGroup>
 </Project>
