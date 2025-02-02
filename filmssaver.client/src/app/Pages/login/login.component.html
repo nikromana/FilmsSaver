@@ -1,10 +1,10 @@
-<div>
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" >
-    <label> Login</label>
-    <input type="text" id="login" name="login" ngModel />
-    <label>Password</label>
-    <input type="text" id="password" name="password" ngModel />
-    <button type="submit"> Login</button>
-    <button type="button" (click)="goRegistration()"> Registrations</button>
+<div class="webkit_canter">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="w-50 align_center p-5 m-2">
+    <label class="m-2"> Login</label><br />
+    <input type="text" id="login" name="login" class="form-control w-50 input_inline m-2" ngModel /><br />
+    <label>Password</label><br />
+    <input type="text" id="password" name="password" class="form-control w-50 input_inline m-2" ngModel /><br />
+    <button type="submit" class="btn btn-outline-primary m-2"> Login</button><br />
+    <button type="button" (click)="goRegistration()" class="btn btn-outline-primary"> Registrations</button>
   </form>
 </div>

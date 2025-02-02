@@ -1,13 +1,13 @@
-<div>
-  <form  #registrationForm="ngForm" (ngSubmit)="registration(registrationForm)">
-    <label>Email login</label>
-    <input type="text" id="emaillogin" name="email" ngModel/>
-    <label>Password</label>
-    <input type="text" id="password" name="password" ngModel/>
-    <label>Name</label>
-    <input type="text" id="name" name="name" ngModel/>
-    <label>Phone</label>
-    <input type="text" id="phone" name="phone" ngModel/>
-    <button type="submit">submit</button>
+<div class="webkit_canter">
+  <form  #registrationForm="ngForm" (ngSubmit)="registration(registrationForm)" class="w-50 align_center p-5 m-2">
+    <label class="m-2">Email login</label><br>
+    <input type="text" id="emaillogin" name="email" class="form-control w-50 input_inline m-2" ngModel/><br>
+    <label class="m-2">Password</label><br>
+    <input type="text" id="password" name="password" class="form-control w-50 input_inline m-2" ngModel/><br>
+    <label class="m-2">Name</label><br>
+    <input type="text" id="name" name="name" class="form-control w-50 input_inline m-2" ngModel/><br>
+    <label class="m-2">Phone</label><br>
+    <input type="text" id="phone" name="phone" class="form-control w-50 input_inline m-2" ngModel/><br>
+    <button type="submit" class="btn btn-outline-primary m-2">submit</button>
   </form>
 </div>
