@@ -11,12 +11,6 @@ namespace Services
     {
         private const string BASE_URL = "https://www.omdbapi.com/?t=";
         private const string API_KEY = "2d10eac1";
-        private Film _findedFilm;
-
-        public Film GetFilm
-        {
-            get => _findedFilm;
-        }
 
         public async Task<FilmsResponceModel> SearchFilms(string title)
         {
@@ -40,8 +34,6 @@ namespace Services
                 throw new Exception();
             }
 
-            _findedFilm = null;
-
             if (result == "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}")
             {
                 responce.Errors = Errors.Films.FILM_NOT_FOUND;
@@ -51,11 +43,6 @@ namespace Services
             responce.Films = result;
 
             return responce;
-        }
-
-        private void ParseJson(string req)
-        {
-            _findedFilm = JsonSerializer.Deserialize<Film>(req);
         }
     }
 }
