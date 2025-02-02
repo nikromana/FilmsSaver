@@ -1,11 +1,13 @@
 ﻿using Model;
+using Services.ResponceModel;
+using Share.Constants;
 using System.Net;
 using System.Text;
 using System.Text.Json;
 
 namespace Services
 {
-    public class OmdbApi
+    public class OmdbApiService
     {
         private const string BASE_URL = "https://www.omdbapi.com/?t=";
         private const string API_KEY = "2d10eac1";
@@ -16,8 +18,10 @@ namespace Services
             get => _findedFilm;
         }
 
-        public void RequestSearch(string title)
+        public async Task<FilmsResponceModel> SearchFilms(string title)
         {
+            var responce = new FilmsResponceModel();
+
             WebRequest request = WebRequest.Create(BASE_URL + title + "&apikey=" + API_KEY);
             request.Method = "GET";
             request.Timeout = 10000;
@@ -40,10 +44,13 @@ namespace Services
 
             if (result == "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}")
             {
-                throw new Exception(); return;
+                responce.Errors = Errors.Films.FILM_NOT_FOUND;
+                return responce;
             }
 
-            ParseJson(result);
+            responce.Films = result;
+
+            return responce;
         }
 
         private void ParseJson(string req)

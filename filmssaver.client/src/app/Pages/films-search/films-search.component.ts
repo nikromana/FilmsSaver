@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FilmsService } from '../../Services/FilmsService';
 
 @Component({
   selector: 'app-films-search',
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class FilmsSearchComponent {
 
+  filmService = inject(FilmsService);
 
   searchFilms() {
 
@@ -19,8 +21,10 @@ export class FilmsSearchComponent {
       console.log(film_search_example);
     } else {
       console.log(film_search_example);
+      return;
     }
 
+    this.filmService.searchFilms(film_search_example.value);
 
   }
 }

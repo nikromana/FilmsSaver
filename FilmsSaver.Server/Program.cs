@@ -43,6 +43,7 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 });
 
 builder.Services.AddScoped<JwtTockenService>();
+builder.Services.AddScoped<OmdbApiService>();
 builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
 
 builder.Services.AddIdentity<User, IdentityRole>()

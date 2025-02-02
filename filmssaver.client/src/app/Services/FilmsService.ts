@@ -15,7 +15,21 @@ export class FilmsService {
 
   searchFilms(films_search_word: string)
   {
+    const searchData = { filmSearch: films_search_word };
 
+    this.http.get<string>('http://localhost:5062/Film/search', { params: searchData })
+      .subscribe(
+        (response: any) => {
+
+          console.log("from searchFilms: " + response.films);
+          console.log("from searchFilms: " + response);
+
+          return response;
+        },
+        (error: string) => {
+          console.log(error);
+        }
+      );
   }
 
   getSavedFilms() {
