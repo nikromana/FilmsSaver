@@ -1,0 +1,36 @@
+.card_height{
+    height: auto;
+    width: 240px;
+}
+
+.picture_size {
+  height: 320px;
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ellipsis-text {
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card_hover:hover {
+  height: 350px;
+  width: 260px;
+  background: #b6b6b6;
+  animation-name: scope_by_hover;
+  animation-duration: 0.5s;
+}
+
+.glow-box {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+  .glow-box:hover {
+    box-shadow: 0 0 15px 5px rgba(52, 152, 219, 0.8);
+    transform: scale(1.1);
+  }
+
+
