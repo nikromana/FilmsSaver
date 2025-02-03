@@ -1,10 +1,13 @@
 <h3>Page with films searching as example.</h3>
 <div>
-  <div class="d-flex p-3">
+  <div class="d-flex p-4 m-1">
     <label class="label_ver_center">Serach Film: </label>
     <input id="search_film_text" type="text" class="form-control w-25 input_inline m-2" />
     <button class="btn btn-outline-primary m-2" (click)="searchFilms()">search</button>
   </div>
   <div id="finded_films">
+    <div class="film-grid d-flex w-auto p-4 m-3">
+      <app-film-card *ngFor="let film of films" [film]="film"></app-film-card>
+    </div>
   </div>
 </div>

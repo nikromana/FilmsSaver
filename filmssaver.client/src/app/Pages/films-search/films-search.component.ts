@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FilmsService } from '../../Services/FilmsService';
 
 @Component({
   selector: 'app-films-search',
@@ -9,18 +10,43 @@ import { Component } from '@angular/core';
 })
 export class FilmsSearchComponent {
 
+  filmService = inject(FilmsService);
+  films: any[] = [];
+  film: any = '';
 
   searchFilms() {
 
     var film_search_example = document.getElementById("search_film_text") as HTMLInputElement;
 
     if (film_search_example) {
-      var inputValue = film_search_example.value;
-      console.log(film_search_example);
+      console.log(film_search_example.value);
     } else {
       console.log(film_search_example);
+      return;
     }
 
+    var film = this.filmService.searchFilms(film_search_example.value).subscribe(
+      (response: any) => {
 
+        console.log("from searchFilms: " + response.films);
+
+        if (response.errors) {
+          alert(response.errors);
+          return;
+        }
+
+        var deserializedFilm = JSON.parse(response.films);
+
+        this.films = [...this.films, deserializedFilm];
+
+      },
+      (error: string) => {
+        console.log(error);
+      }
+    );
+
+    console.log('after film' + film);
   }
+
+
 }
