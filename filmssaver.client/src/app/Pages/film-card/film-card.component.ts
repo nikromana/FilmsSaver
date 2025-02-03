@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { FilmsService } from '../../Services/FilmsService';
 
 @Component({
   selector: 'app-film-card',
@@ -10,5 +11,9 @@ import { Component, Input } from '@angular/core';
 export class FilmCardComponent {
 
   @Input() film: any;
+  filmService = inject(FilmsService);
 
+  addFilmToFavorites(filmName: string) {
+    this.filmService.addFilmToFavorites(filmName);
+  }
 }

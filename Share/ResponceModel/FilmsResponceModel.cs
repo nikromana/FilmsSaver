@@ -8,7 +8,12 @@ namespace Services.ResponceModel
 {
     public class FilmsResponceModel
     {
-        public string Films {  get; set; }
+        public string Films { get; set; }
         public string Errors { get; set; }
+
+        public bool HasErrors()
+        {
+            return !string.IsNullOrWhiteSpace(Errors);
+        }
     }
 }

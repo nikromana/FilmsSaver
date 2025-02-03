@@ -10,6 +10,7 @@ using Model;
 using MediatR;
 using Application.Commands.Registration;
 using Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
     builder.AllowAnyOrigin()
-           .AllowAnyMethod()
+                          .AllowAnyMethod()
            .AllowAnyHeader();
 }));
 
@@ -35,8 +36,8 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration.GetSection("Jwt:ValidIssuer").Value, 
-        ValidAudience = builder.Configuration.GetSection("Jwt:ValidAudience").Value,        
+        ValidIssuer = builder.Configuration.GetSection("Jwt:ValidIssuer").Value,
+        ValidAudience = builder.Configuration.GetSection("Jwt:ValidAudience").Value,
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Secret").Value)) // Replace with your secret key
     };
@@ -44,6 +45,8 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 
 builder.Services.AddScoped<JwtTockenService>();
 builder.Services.AddScoped<OmdbApiService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserContextService>();
 builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
 
 builder.Services.AddIdentity<User, IdentityRole>()

@@ -4,8 +4,8 @@
 }
 
 .picture_size {
-  height: 320px;
-  width: 200px;
+  height: 335px;
+  width: 225px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -33,4 +33,34 @@
     transform: scale(1.1);
   }
 
+.save_star_over {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  padding-right: -1px;
+  z-index: 2; 
+}
 
+.image-container {
+  position: relative; 
+  width: 100%;
+}
+
+.booksmarks {
+  padding: 7px;
+  margin: 7px;
+  width: 30px;
+  height: 30px;
+  background-color: yellow; 
+  mask-image: url("../../Resources/icons/bookmark-plus.svg");
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transition: linear 0.3s ease-in-out;
+}
+
+  .booksmarks:hover {
+    mask-image: url("../../Resources/icons/bookmark-plus-fill.svg");
+    transform: scale(1.4);
+  }
