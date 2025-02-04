@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   authService = inject(AuthenticationService);
-  formActionUrl: string = 'http://localhost:5062/Auth/login';
 
   constructor(private router: Router) { }
 

@@ -1,4 +1,4 @@
-@FilmsSaver.Server_HostAddress = http://localhost:5062
+@FilmsSaver.Server_HostAddress = https://localhost:5062
 
 GET {{FilmsSaver.Server_HostAddress}}/login/
 Accept: application/json

@@ -14,7 +14,7 @@ export class AuthenticationService {
   login(login: any) {
     const loginData = { Login: login.login, Password: login.password };
 
-    this.http.get<string>('http://localhost:5062/Auth/login', { params: loginData })
+    this.http.get<string>('https://localhost:5062/Auth/login', { params: loginData })
       .subscribe(
         (response: any) => {
 
@@ -35,7 +35,7 @@ export class AuthenticationService {
   registration(registration: any) {
     console.log(registration);
 
-    this.http.get<string>('http://localhost:5062/Auth/registration', { params: registration })
+    this.http.get<string>('https://localhost:5062/Auth/registration', { params: registration })
       .subscribe(
         (response: any) => {
 

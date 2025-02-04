@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -21,15 +21,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
-    builder.AllowAnyOrigin()
-                          .AllowAnyMethod()
-           .AllowAnyHeader();
+    builder.WithOrigins("https://127.0.0.1:4200")  
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials();
 }));
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
+    options.Authority = builder.Configuration.GetSection("Jwt:ValidIssuer").Value;
+    options.RequireHttpsMetadata = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -41,6 +45,39 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Secret").Value)) // Replace with your secret key
     };
+    //options.Events = new JwtBearerEvents
+    //{
+    //    OnMessageReceived = context =>
+    //    {
+    //        Console.WriteLine("📩 Получен запрос с заголовками:");
+    //        foreach (var header in context.Request.Headers)
+    //        {
+    //            Console.WriteLine($"   {header.Key}: {header.Value}");
+    //        }
+
+    //        if (context.Request.Headers.ContainsKey("Authorization"))
+    //        {
+    //            Console.WriteLine("✅ Header Authorization founded: " + context.Request.Headers["Authorization"]);
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("❌ Header Authorization not founded");
+    //        }
+
+    //        return Task.CompletedTask;
+    //    },
+    //    OnAuthenticationFailed = context =>
+    //    {
+    //        Console.WriteLine("❌ Error auth: " + context.Exception.Message);
+    //        return Task.CompletedTask;
+    //    },
+    //    OnTokenValidated = context =>
+    //    {
+    //        Console.WriteLine("✅ Success auth! User: " + context.Principal.Identity.Name);
+    //        return Task.CompletedTask;
+    //    }
+    //};
+
 });
 
 builder.Services.AddScoped<JwtTockenService>();
@@ -59,7 +96,11 @@ builder.Services.AddDbContext<FilmsSaverDbContext.FilmsSaverDbContext>(options =
 
 
 var app = builder.Build();
-
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Authorization Header: " + context.Request.Headers["Authorization"]);
+    await next();
+});
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseCors("MyPolicy");
