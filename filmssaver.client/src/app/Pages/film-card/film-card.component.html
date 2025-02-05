@@ -1,8 +1,9 @@
 <div class="card_height p-1 m-3 glow-box">
-  <div>
-    <img class="picture_size" src="{{film.Poster}}" />
+  <div class="image-container">
+    <img class="save_star_over booksmarks" (click)="addFilmToFavorites(film.title)"/>
+    <img class="picture_size" src="{{film.poster}}" />
   </div>
   <div class="ellipsis-text">
-    {{film.Title}}
+    {{film.title}}
   </div>
 </div>

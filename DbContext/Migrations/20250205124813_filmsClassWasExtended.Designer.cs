@@ -4,6 +4,7 @@ using FilmsSaverDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmsSaverDbContext.Migrations
 {
     [DbContext(typeof(FilmsSaverDbContext))]
-    partial class FilmsSaverDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250205124813_filmsClassWasExtended")]
+    partial class filmsClassWasExtended
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,20 +214,14 @@ namespace FilmsSaverDbContext.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Writer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Year")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Films");
                 });
@@ -271,6 +268,9 @@ namespace FilmsSaverDbContext.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("SavedFilmsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -290,6 +290,8 @@ namespace FilmsSaverDbContext.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("SavedFilmsId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -345,17 +347,12 @@ namespace FilmsSaverDbContext.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Film", b =>
-                {
-                    b.HasOne("Model.User", "User")
-                        .WithMany("SavedFilms")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Model.User", b =>
                 {
+                    b.HasOne("Model.Film", "SavedFilms")
+                        .WithMany()
+                        .HasForeignKey("SavedFilmsId");
+
                     b.Navigation("SavedFilms");
                 });
 #pragma warning restore 612, 618

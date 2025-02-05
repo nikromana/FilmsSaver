@@ -40,7 +40,7 @@ namespace Services
                 return responce;
             }
 
-            responce.Films = result;
+            responce.Films = JsonSerializer.Deserialize<Film>(result);
 
             return responce;
         }

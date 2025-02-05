@@ -35,9 +35,7 @@ export class FilmsSearchComponent {
           return;
         }
 
-        var deserializedFilm = JSON.parse(response.films);
-
-        this.films = [...this.films, deserializedFilm];
+        this.films = [...this.films, response.films];
 
       },
       (error: string) => {
