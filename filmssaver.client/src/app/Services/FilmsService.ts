@@ -42,7 +42,9 @@ export class FilmsService {
   }
 
   getSavedFilms() {
-
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' });
+    const saveData = {};
+    return this.http.post<any>('https://localhost:5062/Film/getSavedFilms', saveData, { headers });
   }
 
   deleteFilmFromSaved()

@@ -1,4 +1,5 @@
 ﻿using Application.Queries.Login;
+using FilmsSaverDbContext;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Model;
@@ -7,6 +8,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -15,21 +17,39 @@ namespace Application.Queries.SaveFilm
 {
     public class SaveFilmsQueryHandler(OmdbApiService _omdbApi, 
         UserManager<User> _userManager,
-        UserContextService userContextService) : IRequestHandler<SaveFilmQuery, string>
+        UserContextService _userContextService,
+        FilmsSaverDbContext.FilmsSaverDbContext _context) : IRequestHandler<SaveFilmQuery, ResponceResultBase>
     {
-        public async Task<string> Handle(SaveFilmQuery request, CancellationToken cancellationToken)
+        public async Task<ResponceResultBase> Handle(SaveFilmQuery request, CancellationToken cancellationToken)
         {
-            var film = await _omdbApi.SearchFilms(request.FilmName);
+            var result = new ResponceResultBase();
 
-            if( film.HasErrors())
+            try
             {
-                return film.Errors;
+                var film = await _omdbApi.SearchFilms(request.FilmName);
+
+                if (film.HasErrors())
+                {
+                    result.Errors = film.Errors;
+                    return result;
+                }
+                var parsedFilm = film.Films;
+
+                var userId = _userContextService.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var existedUser = await _userManager.FindByIdAsync(userId);
+
+                existedUser.SavedFilms.Add(parsedFilm);
+
+                await _context.SaveChangesAsync(cancellationToken);
+
             }
-            var parsedFilm = JsonConvert.DeserializeObject<Film>(film.Films);
+            catch (Exception ex)
+            {
+                result.Errors = ex.Message;
+            }
 
-            var qwe = userContextService.User;
-
-            return null;
+            return result;
         }
     }
 }

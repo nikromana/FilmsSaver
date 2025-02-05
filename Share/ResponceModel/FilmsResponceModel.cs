@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Services.ResponceModel
 {
     public class FilmsResponceModel
     {
-        public string Films { get; set; }
+        public Film Films { get; set; }
         public string Errors { get; set; }
 
         public bool HasErrors()
