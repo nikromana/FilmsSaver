@@ -5,13 +5,16 @@ import { RegistrationComponent } from './Pages/registration/registration.compone
 import { MainPageComponent } from './Pages/main-page/main-page.component';
 import { FilmsSavedComponent } from './Pages/films-saved/films-saved.component';
 import { FilmsSearchComponent } from './Pages/films-search/films-search.component';
+import { AuthGuard } from './Pages/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent },
   {path: 'main-page', component: MainPageComponent, children: [
-      { path: 'films-saved', component: FilmsSavedComponent, outlet: 'main_page_outlet' },
-      { path: 'films-search', component: FilmsSearchComponent, outlet: 'main_page_outlet' }] }
+    { path: 'films-saved', component: FilmsSavedComponent, outlet: 'main_page_outlet' },
+    { path: 'films-search', component: FilmsSearchComponent, outlet: 'main_page_outlet' }], canActivate: [AuthGuard]
+  } 
 ];
 
 @NgModule({

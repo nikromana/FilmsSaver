@@ -1,7 +1,23 @@
-<p>main-page works!</p>
+
 <div>
 
   <div>
+    <div>
+      <div class="d-flex flex-row-reverse">
+        <div class="dropdown px-4">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+            Options
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Language</a></li>
+            <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
     <nav class="nav-container">
       <div class="site-description">
         <div class="w-50 d-flex justify-content-between border w-auto p-4 m-4">
