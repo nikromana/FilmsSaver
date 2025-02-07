@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthenticationService } from '../../Services/AuthenticationService';
 
 @Component({
   selector: 'app-main-page',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
+
+  authServiece = inject(AuthenticationService);
+
+  logout()
+  {
+    this.authServiece.logout();
+  }
 
 }
