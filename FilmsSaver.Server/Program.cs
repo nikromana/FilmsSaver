@@ -83,7 +83,8 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 builder.Services.AddScoped<JwtTockenService>();
 builder.Services.AddScoped<OmdbApiService>();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<UserContextService>();
+builder.Services.AddScoped<UserContextService>(); 
+builder.Services.AddSignalR();
 builder.Services.AddMediatR(typeof(RegistrationCommandHandler).Assembly);
 
 builder.Services.AddIdentity<User, IdentityRole>()
@@ -115,7 +116,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthorization(); 
+app.MapHub<MovieHub>("/moviehub");
 
 app.MapControllers();
 

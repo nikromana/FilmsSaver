@@ -35,6 +35,9 @@ export class FilmsSearchComponent {
           return;
         }
 
+        //this row if i want to reload whole list of fimls 
+        //this.films = [];
+
         this.films = [...this.films, response.films];
 
       },

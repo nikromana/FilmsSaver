@@ -1,11 +1,11 @@
 .card_height{
     height: auto;
-    width: 240px;
+    width: 220px;
 }
 
 .picture_size {
-  height: 335px;
-  width: 225px;
+  height: 305px;
+  width: 205px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -62,5 +62,22 @@
 
   .booksmarks:hover {
     mask-image: url("../../Resources/icons/bookmark-plus-fill.svg");
+    transform: scale(1.4);
+  }
+
+.delete {
+  padding: 7px;
+  margin: 7px;
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  mask-image: url("../../Resources/icons/trash.svg");
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transition: linear 0.3s ease-in-out;
+}
+  .delete:hover {
+    mask-image: url("../../Resources/icons/trash.svg");
     transform: scale(1.4);
   }

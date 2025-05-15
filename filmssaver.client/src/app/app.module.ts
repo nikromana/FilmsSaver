@@ -13,6 +13,7 @@ import { FilmsSearchComponent } from './Pages/films-search/films-search.componen
 import { FilmsSavedComponent } from './Pages/films-saved/films-saved.component';
 import { FilmCardComponent } from './Pages/film-card/film-card.component';
 import { FilmPageComponent } from './Pages/film-page/film-page.component';
+import { AboutComponent } from './Pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FilmPageComponent } from './Pages/film-page/film-page.component';
     FilmsSearchComponent,
     FilmsSavedComponent,
     FilmCardComponent,
-    FilmPageComponent
+    FilmPageComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
