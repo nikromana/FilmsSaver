@@ -26,4 +26,9 @@ export class FilmCardComponent implements OnInit {
     this.filmService.addFilmToFavorites(filmName);
     this.signalRService.addMovie();
   }
+
+  deleteFilmFromFavorites(filmId: string) {
+    this.filmService.deleteFilmFromSaved(filmId);
+    this.signalRService.addMovie();
+  }
 }

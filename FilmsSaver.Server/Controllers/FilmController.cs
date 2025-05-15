@@ -1,4 +1,5 @@
-﻿using Application.Queries.GetSavedFilms;
+﻿using Application.Queries.DeleteFilm;
+using Application.Queries.GetSavedFilms;
 using Application.Queries.SaveFilm;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,6 +39,16 @@ namespace FilmsSaver.Server.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [EnableCors("MyPolicy")]
         public async Task<IActionResult> GetSavedFilms([FromBody] GetSavedFilmsQuery filmName, CancellationToken token)
+        {
+            var result = await _mediatr.Send(filmName, token);
+
+            return Ok(result);
+        }
+
+        [HttpGet("deleteFilmFromSaved")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [EnableCors("MyPolicy")]
+        public async Task<IActionResult> DeleteFilmFromSaved([FromQuery] DeleteSavedFilmQuery filmName, CancellationToken token)
         {
             var result = await _mediatr.Send(filmName, token);
 
