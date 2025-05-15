@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../Services/AuthenticationService';
+import { SignalRService } from '../../Services/SignalRService';
 
 @Component({
   selector: 'app-main-page',

@@ -9,6 +9,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\Models\" />
-    <Folder Include="src\app\Resources\icons\" />
   </ItemGroup>
 </Project>

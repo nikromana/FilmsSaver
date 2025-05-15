@@ -2,6 +2,7 @@
 using FilmsSaverDbContext;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Model;
 using Newtonsoft.Json;
 using Services;
@@ -18,7 +19,8 @@ namespace Application.Queries.SaveFilm
     public class SaveFilmsQueryHandler(OmdbApiService _omdbApi, 
         UserManager<User> _userManager,
         UserContextService _userContextService,
-        FilmsSaverDbContext.FilmsSaverDbContext _context) : IRequestHandler<SaveFilmQuery, ResponceResultBase>
+        FilmsSaverDbContext.FilmsSaverDbContext _context,
+        IHubContext<MovieHub> _hubContext ) : IRequestHandler<SaveFilmQuery, ResponceResultBase>
     {
         public async Task<ResponceResultBase> Handle(SaveFilmQuery request, CancellationToken cancellationToken)
         {
@@ -42,6 +44,10 @@ namespace Application.Queries.SaveFilm
                 existedUser.SavedFilms.Add(parsedFilm);
 
                 await _context.SaveChangesAsync(cancellationToken);
+
+                var movieCount = existedUser.SavedFilms.Count();
+
+                await _hubContext.Clients.All.SendAsync("", movieCount);
 
             }
             catch (Exception ex)
