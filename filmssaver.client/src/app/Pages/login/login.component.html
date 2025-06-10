@@ -5,6 +5,8 @@
     <label>Password</label><br />
     <input type="text" id="password" name="password" class="form-control w-50 input_inline m-2" ngModel /><br />
     <button type="submit" class="btn btn-outline-primary m-2"> Login</button><br />
-    <button type="button" (click)="goRegistration()" class="btn btn-outline-primary"> Registrations</button>
+  <button type="button" (click)="goRegistration()" class="btn btn-outline-primary"> {{'REGISTRATION'| translate}}</button>
   </form>
+  <button (click)="switchLanguage('en')">English</button>
+  <button (click)="switchLanguage('ru')">Русский</button>
 </div>
