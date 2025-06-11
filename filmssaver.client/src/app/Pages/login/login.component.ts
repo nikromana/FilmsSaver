@@ -12,9 +12,19 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginComponent {
 
+  currentLang = 'en'; 
+
   authService = inject(AuthenticationService);
 
   constructor(private router: Router, private translate: TranslateService) {
+    const savedLang = localStorage.getItem('lang');
+
+    if (savedLang) {
+      this.switchLanguage(savedLang);
+    } else {
+      this.translate.use(this.currentLang);
+    }
+
     translate.setDefaultLang('en');
     translate.use('en'); 
   }
@@ -30,6 +40,8 @@ export class LoginComponent {
   }
 
   switchLanguage(lang: string) {
+    this.currentLang = lang;
     this.translate.use(lang);
+    localStorage.setItem('lang', lang);
   }
 }

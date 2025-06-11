@@ -1,12 +1,26 @@
-<div class="webkit_canter">
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="w-50 align_center p-5 m-2">
-    <label class="m-2"> Login</label><br />
-    <input type="text" id="login" name="login" class="form-control w-50 input_inline m-2" ngModel /><br />
-    <label>Password</label><br />
-    <input type="text" id="password" name="password" class="form-control w-50 input_inline m-2" ngModel /><br />
-    <button type="submit" class="btn btn-outline-primary m-2"> Login</button><br />
-  <button type="button" (click)="goRegistration()" class="btn btn-outline-primary"> {{'REGISTRATION'| translate}}</button>
-  </form>
-  <button (click)="switchLanguage('en')">English</button>
-  <button (click)="switchLanguage('ru')">Русский</button>
+<div class="p-5">
+  <div class="lang-switcher m-0 p-0 justify-content-center">
+    <img src="https://flagcdn.com/w20/gb.png"
+         alt="English"
+         [class.active]="currentLang === 'en'"
+         (click)="switchLanguage('en')" />
+    <img src="https://flagcdn.com/w20/ru.png"
+         alt="Русский"
+         [class.active]="currentLang === 'ru'"
+         (click)="switchLanguage('ru')" />
+    <img src="https://flagcdn.com/w20/de.png"
+         alt="Deutsch"
+         [class.active]="currentLang === 'de'"
+         (click)="switchLanguage('de')" />
+  </div>
+  <div class="webkit_canter">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="w-50 align_center p-3 m-2">
+      <label class="m-2"> Login</label><br />
+      <input type="text" id="login" name="login" class="form-control w-50 input_inline m-2" ngModel /><br />
+      <label>Password</label><br />
+      <input type="text" id="password" name="password" class="form-control w-50 input_inline m-2" ngModel /><br />
+      <button type="submit" class="btn btn-outline-primary m-2"> Login</button><br />
+      <button type="button" (click)="goRegistration()" class="btn btn-outline-primary"> {{'REGISTRATION'| translate}}</button>
+    </form>
+  </div>
 </div>
