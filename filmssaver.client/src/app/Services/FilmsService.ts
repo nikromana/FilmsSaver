@@ -52,6 +52,6 @@ export class FilmsService {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' });
     const saveData = { FilmName: filmName };
 
-    return this.http.get<string>('https://localhost:5062/Film/save?FilmId='filmName, { headers });
+    //return this.http.get<string>('https://localhost:5062/Film/save?FilmId='filmName, { headers });
   }
 }
