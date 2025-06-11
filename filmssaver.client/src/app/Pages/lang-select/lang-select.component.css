@@ -1,0 +1,38 @@
+img {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.align_center {
+  text-align: center;
+}
+
+.input_inline {
+  display: inline-block;
+}
+
+.webkit_canter {
+  text-align: -webkit-center;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+  .lang-switcher img {
+    width: 32px;
+    height: 22px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    border-radius: 3px;
+  }
+
+    .lang-switcher img:active {
+      transform: scale(0.9);
+    }
+
+    .lang-switcher img.active {
+      box-shadow: 0 0 6px 2px rgba(0, 174, 255, 0.6);
+    }

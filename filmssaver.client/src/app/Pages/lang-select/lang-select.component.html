@@ -1,0 +1,19 @@
+<div class=" lang-switcher m-0 p-2 justify-content-center">
+  <div>
+    <div class="p-2">Select language</div>
+    <div class="p-2">
+      <img src="https://flagcdn.com/w20/gb.png"
+           alt="English"
+           [class.active]="currentLang === 'en'"
+           (click)="switchLanguage('en')" />
+      <img src="https://flagcdn.com/w20/ru.png"
+           alt="Русский"
+           [class.active]="currentLang === 'ru'"
+           (click)="switchLanguage('ru')" />
+      <img src="https://flagcdn.com/w20/de.png"
+           alt="Deutsch"
+           [class.active]="currentLang === 'de'"
+           (click)="switchLanguage('de')" />
+    </div>
+  </div>
+</div>
