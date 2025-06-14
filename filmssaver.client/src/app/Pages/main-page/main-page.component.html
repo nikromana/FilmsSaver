@@ -7,7 +7,7 @@
         <div class="dropdown px-4">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                   data-bs-toggle="dropdown" aria-expanded="false">
-            Options
+            {{ 'OPTIONS' | translate}}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li><a class="dropdown-item">Settings</a></li>
@@ -19,22 +19,44 @@
     </div>
     <nav class="nav-container">
       <div class="site-description">
-        <div class="w-50 d-flex justify-content-between  w-auto p-2 m-2">
-          <div id="photo" class="photo-wrapper w-25 ">
-            <img src="images/Portfolio.jpg" alt="Моё фото" class="profile-photo" />
+        <div class="w-50 d-flex justify-content-around w-auto p-2 m-2">
+          <div id="photo" class="photo-wrapper w-25 d-block">
+            <div>
+              <img src="images/Portfolio.jpg" alt="Моё фото" class="profile-photo" />
+            </div>
+            <div class="contact-links d-flex justify-content-between p-2 m-lg-4">
+              <a href="https://www.linkedin.com/in/nikromw/" target="_blank" rel="noopener" class="contact-item">
+                <img src="https://cdn-icons-png.flaticon.com/24/174/174857.png" alt="LinkedIn" />
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://www.karriere.at/" target="_blank" rel="noopener" class="contact-item">
+                <img src="https://cdn-icons-png.flaticon.com/24/888/888879.png" alt="karriere.at" />
+                <span>karriere.at</span>
+              </a>
+              <a href="https://github.com/nikromw" target="_blank" rel="noopener" class="contact-item">
+                <img src="https://cdn-icons-png.flaticon.com/24/733/733553.png" alt="GitHub" />
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
           <div class="text-block">
-            <h2>Обо мне</h2>
+            <h2>{{ 'ABOUT_ME' | translate }}</h2>
             <p>
-              {{ 'MAIN_PAGE_DESCRIPTION' | translate}}
+              {{ 'MAIN_PAGE_DESCRIPTION' | translate }}
             </p>
           </div>
         </div>
       </div>
-      <ul class="nav-menu justify-content-star">
-        <li class="tab"><a [routerLink]="[{ outlets: { main_page_outlet: ['about'] } }]" routerLinkActive="active">About</a></li>
-        <li class="tab"><a [routerLink]="[{ outlets: { main_page_outlet: ['films-search'] } }]" routerLinkActive="active">Films</a></li>
-        <li class="tab"><a [routerLink]="[{ outlets: { main_page_outlet: ['films-saved'] } }]" routerLinkActive="active">Saved</a></li>
+      <ul class="nav-menu">
+        <li class="tab">
+          <a [routerLink]="[{ outlets: { main_page_outlet: ['about'] } }]" routerLinkActive="active">{{ 'ABOUT_TAB' | translate }}</a>
+        </li>
+        <li class="tab">
+          <a [routerLink]="[{ outlets: { main_page_outlet: ['films-search'] } }]" routerLinkActive="active">{{ 'FILMS_TAB' | translate }}</a>
+        </li>
+        <li class="tab">
+          <a [routerLink]="[{ outlets: { main_page_outlet: ['films-saved'] } }]" routerLinkActive="active">{{ 'SAVED_FILMS_TAB' | translate }}</a>
+        </li>
       </ul>
     </nav>
     <div class="content-container">

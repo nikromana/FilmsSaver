@@ -22,13 +22,16 @@ export class FilmCardComponent implements OnInit {
 
   filmService = inject(FilmsService);
 
-  addFilmToFavorites(filmName: string) {
-    this.filmService.addFilmToFavorites(filmName);
-    this.signalRService.addMovie();
+  addOrRemoveFilmToFavorites(filmName: string) {
+
+    if (this.addCard) {
+      this.filmService.addFilmToFavorites(filmName);
+      this.signalRService.addMovie();
+    } else {
+      this.filmService.deleteFilmFromSaved(filmName);
+      this.signalRService.addMovie();
+    }
   }
 
-  deleteFilmFromFavorites(filmId: string) {
-    this.filmService.deleteFilmFromSaved(filmId);
-    this.signalRService.addMovie();
-  }
+
 }
