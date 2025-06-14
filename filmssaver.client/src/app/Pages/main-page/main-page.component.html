@@ -10,22 +10,24 @@
             Options
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Language</a></li>
+            <li><a class="dropdown-item">Settings</a></li>
+            <li><a class="dropdown-item" (click)="selectLangWindow()">Language</a></li>
             <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
           </ul>
         </div>
-
       </div>
     </div>
     <nav class="nav-container">
       <div class="site-description">
-        <div class="w-50 d-flex justify-content-between border w-auto p-4 m-4">
-          <div id="photo" class="w-25 border">
-            photo
+        <div class="w-50 d-flex justify-content-between  w-auto p-2 m-2">
+          <div id="photo" class="photo-wrapper w-25 ">
+            <img src="images/Portfolio.jpg" alt="Моё фото" class="profile-photo" />
           </div>
-          <div class="w-75 border">
-            Description
+          <div class="text-block">
+            <h2>Обо мне</h2>
+            <p>
+              {{ 'MAIN_PAGE_DESCRIPTION' | translate}}
+            </p>
           </div>
         </div>
       </div>

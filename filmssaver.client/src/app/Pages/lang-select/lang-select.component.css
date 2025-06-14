@@ -1,10 +1,10 @@
-img{
-    margin-left: 10px;
-    margin-right: 10px;
+img {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.align_center{
-    text-align: center;
+.align_center {
+  text-align: center;
 }
 
 .input_inline {
@@ -36,4 +36,3 @@ img{
     .lang-switcher img.active {
       box-shadow: 0 0 6px 2px rgba(0, 174, 255, 0.6);
     }
-
