@@ -21,5 +21,11 @@ namespace Services
             _movieCount++;
             await Clients.All.SendAsync("ReceiveMovieCount", _movieCount);
         }
+
+        public async Task DeleteMovie()
+        {
+            _movieCount--;
+            await Clients.All.SendAsync("ReceiveMovieCount", _movieCount);
+        }
     }
 }
