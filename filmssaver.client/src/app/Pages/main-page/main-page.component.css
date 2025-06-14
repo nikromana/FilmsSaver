@@ -1,35 +1,13 @@
-.nav-container {
-  text-align: center;
-}
 
-.nav-menu {
-  list-style: none;
-  display: flex;
-  border-bottom: 2px solid #ccc;
-}
 
-  .nav-menu .tab {
-    margin: 0 10px 0 0;
-  }
 
-.tab {
-  position: relative;
-  padding: 10px 20px;
-  background: #f8f8f8;
-  border-radius: 8px 8px 0 0;
-  border: 2px solid #ccc;
-  border-bottom: none;
-}
 
-  .tab a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
 
-    .tab a.active {
-      color: #007bff;
-    }
+
+
+
+
+
 
 .photo-wrapper {
   display: flex;
@@ -78,3 +56,90 @@
     border-left: 4px solid #007bff;
     padding-left: 12px;
   }
+
+.nav-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start; 
+  border-bottom: 2px solid #e0e0e0;
+  padding: 0;
+  margin: 0;
+  gap: 16px;
+}
+
+  .nav-menu .tab {
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+.tab a {
+  display: block;
+  padding: 12px 24px;
+  background: #f0f4f8;
+  border-radius: 12px 12px 0 0;
+  border: 2px solid transparent;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tab:hover {
+  transform: translateY(-2px);
+}
+
+.tab a:hover {
+  background-color: #e6f0ff;
+  color: #007bff;
+  border-color: #cce0ff;
+}
+
+.tab a.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.25);
+}
+
+  .tab a.active:hover {
+    background-color:white
+  }
+
+.contact-links{
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+  .contact-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+
+  .contact-item:hover {
+    color: #007bff;
+  }
+
+    .contact-item:hover img {
+      filter: none;
+    }
