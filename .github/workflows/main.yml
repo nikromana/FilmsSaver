@@ -37,7 +37,7 @@ jobs:
 
       - name: Copy Angular dist to ASP.NET Core wwwroot
         run: |
-          Remove-Item -Recurse -Force FilmsSaver.Server\wwwroot\*
+          Remove-Item -Recurse -Force wwwroot\*
           Copy-Item -Recurse -Force filmssaver.client\dist\filmssaver.client\* wwwroot\
 
       - name: Build ASP.NET Core backend
