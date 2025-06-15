@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
 
+  public movieCount$ = new Subject<number>();
   public movieChanged$: Subject<void> = new Subject<void>();
 
   constructor() {
@@ -24,10 +25,18 @@ export class SignalRService {
       this.movieChanged$.next();
     });
   }
-  
+
+  getMovieCount() {
+    this.hubConnection.invoke('GetMovieCount', (movieCount: number) => {
+      console.log('Updated Movie Count: ', movieCount);
+      this.movieCount$.next(movieCount);
+    });
+  }
+
   receiveMovieCount(): void {
     this.hubConnection.on('ReceiveMovieCount', (movieCount: number) => {
       console.log('Updated Movie Count: ', movieCount);
+      this.movieCount$.next(movieCount);
     });
   }
 
