@@ -47,7 +47,7 @@ namespace Application.Queries.SaveFilm
 
                 var movieCount = existedUser.SavedFilms.Count();
 
-                await _hubContext.Clients.All.SendAsync("", movieCount);
+                await _hubContext.Clients.All.SendAsync("ReceiveMovieCount", movieCount);
 
             }
             catch (Exception ex)

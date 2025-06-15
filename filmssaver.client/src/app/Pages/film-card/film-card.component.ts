@@ -29,7 +29,7 @@ export class FilmCardComponent implements OnInit {
       this.signalRService.addMovie();
     } else {
       this.filmService.deleteFilmFromSaved(filmName);
-      this.signalRService.addMovie();
+      this.signalRService.deleteMovie();
     }
   }
 

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LangSelectComponent } from '../lang-select/lang-select.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConstants } from '../../Share/Constants';
+import { SignalRService } from '../../Services/SignalRService';
 
 @Component({
   selector: 'app-main-page',
@@ -16,9 +17,14 @@ export class MainPageComponent {
 
   currentLang = AppConstants.DEFAULT_LANG; 
   authServiece = inject(AuthenticationService);
+  movieCount = 0;
 
-  constructor(private langDialog: MatDialog, private translate: TranslateService) {
+  constructor(private langDialog: MatDialog,
+    private translate: TranslateService,
+    private signalRService: SignalRService) {
+
     const savedLang = localStorage.getItem(AppConstants.DEFAULT_LANG_DESCR);
+
     if (savedLang) {
       this.switchLanguage(savedLang);
     } else {
@@ -27,6 +33,12 @@ export class MainPageComponent {
 
     translate.setDefaultLang(this.currentLang);
     translate.use(this.currentLang);
+
+    this.signalRService.movieCount$.subscribe(count => {
+      this.movieCount = count;
+    });
+
+    this.signalRService.getMovieCount();
 }
 
   logout()
