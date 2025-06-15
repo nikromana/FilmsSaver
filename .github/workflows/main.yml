@@ -2,46 +2,55 @@ name: Build Angular + ASP.NET Core (Windows)
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: windows-latest
 
+    env:
+      BUILD_CONFIG: Release
+      RUNTIME_ID: win-x64
+      PUBLISH_DIR: publish_output
+
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '7.0.x'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Install Angular dependencies
-      working-directory: filmssaver.client
-      run: npm install
+      - name: Install Angular dependencies
+        working-directory: filmssaver.client
+        run: npm install
 
-    - name: Build Angular app (production)
-      working-directory: filmssaver.client
-      run: npm run build -- --configuration production
+      - name: Build Angular app (production)
+        working-directory: filmssaver.client
+        run: npm run build -- --configuration production
 
-    - name: Clean wwwroot folder
-      run: Remove-Item -Recurse -Force FilmsSaver.Server\wwwroot\*
+      - name: Copy Angular dist to ASP.NET Core wwwroot
+        run: |
+          Remove-Item -Recurse -Force FilmsSaver.Server\wwwroot\*
+          Copy-Item -Recurse -Force filmssaver.client\dist\filmssaver.client\* FilmsSaver.Server\wwwroot\
 
-    - name: Copy Angular build files to wwwroot
-      run: Copy-Item -Recurse -Force filmssaver.client\dist\filmssaver.client\* FilmsSaver.Server\wwwroot\
+      - name: Build ASP.NET Core backend
+        run: dotnet build FilmsSaver.Server\FilmsSaver.Server.csproj --configuration ${{ env.BUILD_CONFIG }}
 
-    - name: Publish ASP.NET Core project
-      run: dotnet publish FilmsSaver.Server\FilmsSaver.Server.csproj -c Release -o published
+      - name: Publish ASP.NET Core app
+        run: dotnet publish FilmsSaver.Server\FilmsSaver.Server.csproj --configuration ${{ env.BUILD_CONFIG }} --runtime ${{ env.RUNTIME_ID }} --self-contained false --output ${{ env.PUBLISH_DIR }}
 
-    - name: (Optional) Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: published-app
-        path: FilmsSaver.Server\published
+      - name: Archive published app
+        run: Compress-Archive -Path "${{ env.PUBLISH_DIR }}\*" -DestinationPath publish.zip
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-app
+          path: publish.zip
