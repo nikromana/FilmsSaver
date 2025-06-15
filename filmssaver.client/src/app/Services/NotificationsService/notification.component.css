@@ -1,0 +1,45 @@
+.notification-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 10000;
+}
+
+.notification {
+  min-width: 250px;
+  max-width: 320px;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  color: #fff;
+  font-family: sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+  opacity: 0.95;
+}
+
+  .notification.info {
+    background-color: #2c7be5;
+  }
+
+  .notification.warning {
+    background-color: #f0ad4e;
+  }
+
+  .notification.error {
+    background-color: #d9534f;
+  }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 0.95;
+  }
+}
