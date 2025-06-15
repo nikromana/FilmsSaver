@@ -5,6 +5,7 @@ import { LangSelectComponent } from '../lang-select/lang-select.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConstants } from '../../Share/Constants';
 import { SignalRService } from '../../Services/SignalRService';
+import { NotificationService } from '../../Services/NotificationsService/notification.service';
 
 @Component({
   selector: 'app-main-page',
@@ -21,7 +22,8 @@ export class MainPageComponent {
 
   constructor(private langDialog: MatDialog,
     private translate: TranslateService,
-    private signalRService: SignalRService) {
+    private signalRService: SignalRService,
+    private notificationService: NotificationService) {
 
     const savedLang = localStorage.getItem(AppConstants.DEFAULT_LANG_DESCR);
 

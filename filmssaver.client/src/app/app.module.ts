@@ -17,6 +17,7 @@ import { AboutComponent } from './Pages/about/about.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LangSelectComponent } from './Pages/lang-select/lang-select.component';
+import { NotificationComponent } from './Services/NotificationsService/notification.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule, HttpClientModule,
+    NotificationComponent,
     AppRoutingModule, FormsModule, NgbModule,
     HttpClientModule,
     TranslateModule.forRoot({

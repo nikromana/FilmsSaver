@@ -1,6 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FilmsService } from '../../Services/FilmsService';
 import { SignalRService } from '../../Services/SignalRService';
+import { NotificationService } from '../../Services/NotificationsService/notification.service';
 
 @Component({
   selector: 'app-film-card',
@@ -23,6 +24,8 @@ export class FilmCardComponent implements OnInit {
   filmService = inject(FilmsService);
 
   addOrRemoveFilmToFavorites(filmName: string) {
+
+
 
     if (this.addCard) {
       this.filmService.addFilmToFavorites(filmName);

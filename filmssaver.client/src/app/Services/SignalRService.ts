@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { Subject } from 'rxjs';
+import { NotificationService } from './NotificationsService/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class SignalRService {
   public movieCount$ = new Subject<number>();
   public movieChanged$: Subject<void> = new Subject<void>();
 
-  constructor() {
+  constructor(private notifications: NotificationService) {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5062/moviehub') 
       .build();
@@ -44,6 +45,8 @@ export class SignalRService {
   addMovie(): void {
     this.hubConnection.invoke('AddMovie')
       .catch(err => console.error('Error while adding movie: ', err));
+
+    this.notifications.show("Film was added", "info");
   }
 
   // Метод для отправки события добавления фильма
