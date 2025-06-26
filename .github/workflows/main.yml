@@ -51,8 +51,14 @@ jobs:
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          ftp-server: ftp://194.164.55.146:21
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ${{ env.PUBLISH_DIR }}
-          remote-dir: /FilmSaver
+            server: 194.164.55.146
+            username: ${{ secrets.FTP_USERNAME }}
+            password: ${{ secrets.FTP_PASSWORD }}
+            local-dir: ${{ env.PUBLISH_DIR }}
+            server-dir: /FilmSaver
+    - name: List published files (detailed)
+        run: |
+            Get-ChildItem -Recurse ${{ env.PUBLISH_DIR }} | Format-Table FullName, Length
+        shell: powershell
+
+
