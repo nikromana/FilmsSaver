@@ -3,6 +3,7 @@ name: Build Angular + ASP.NET Core (Windows)
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:   
 
 jobs:
   build:
