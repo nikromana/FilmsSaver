@@ -54,7 +54,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ${{ env.PUBLISH_DIR }}/
-          server-dir: /FilmSaver
+          server-dir: /FilmSaver/
 
       - name: List published files (detailed)
         run: |
