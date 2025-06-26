@@ -3,7 +3,7 @@ name: Build Angular + ASP.NET Core (Windows)
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:   
+  workflow_dispatch:
 
 jobs:
   build:
@@ -38,8 +38,8 @@ jobs:
 
       - name: Copy Angular dist to ASP.NET Core wwwroot
         run: |
-            Remove-Item -Recurse -Force FilmsSaver.Server\wwwroot\* -ErrorAction SilentlyContinue
-            Copy-Item -Recurse -Force filmssaver.client\dist\filmssaver.client\* FilmsSaver.Server\wwwroot\
+          Remove-Item -Recurse -Force FilmsSaver.Server\wwwroot\* -ErrorAction SilentlyContinue
+          Copy-Item -Recurse -Force filmssaver.client\dist\filmssaver.client\* FilmsSaver.Server\wwwroot\
 
       - name: Build ASP.NET Core backend
         run: dotnet build FilmsSaver.Server\FilmsSaver.Server.csproj --configuration ${{ env.BUILD_CONFIG }}
@@ -47,18 +47,16 @@ jobs:
       - name: Publish ASP.NET Core app
         run: dotnet publish FilmsSaver.Server\FilmsSaver.Server.csproj --configuration ${{ env.BUILD_CONFIG }} --runtime ${{ env.RUNTIME_ID }} --self-contained false --output ${{ env.PUBLISH_DIR }}
 
-          
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-            server: 194.164.55.146
-            username: ${{ secrets.FTP_USERNAME }}
-            password: ${{ secrets.FTP_PASSWORD }}
-            local-dir: ${{ env.PUBLISH_DIR }}
-            server-dir: /FilmSaver
-    - name: List published files (detailed)
+          server: 194.164.55.146
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ${{ env.PUBLISH_DIR }}
+          server-dir: /FilmSaver
+
+      - name: List published files (detailed)
         run: |
-            Get-ChildItem -Recurse ${{ env.PUBLISH_DIR }} | Format-Table FullName, Length
+          Get-ChildItem -Recurse ${{ env.PUBLISH_DIR }} | Format-Table FullName, Length
         shell: powershell
-
-
